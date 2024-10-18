@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nnnnnnnnnnnnnnnn.MainPage" BackgroundColor="#112B47">
+
+    <ContentPage.Content>
+        <StackLayout x:Name="MainStack" >
+            <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                <Entry Placeholder="UserName" x:Name="UsernameEntry" TextColor="White" PlaceholderColor="Gray"></Entry>
+                <Entry Placeholder="Password" x:Name="PasswordEntry" IsPassword="True" TextColor="White" PlaceholderColor="Gray"></Entry>
+                <Button VerticalOptions="Center"
+                        Text="LogIn"
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        BorderColor="Green"
+                        BorderWidth="1.5"
+                        CornerRadius="50"
+                        Clicked="Button_Clicked"
+                      />
+                <Label HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Don't have an account?" TextColor="Gray"/>
+                            <Span Text="Register" TextColor="Gray" FontAttributes="Bold" TextDecorations="Underline"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
