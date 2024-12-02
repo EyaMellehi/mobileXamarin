@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nnnnnnnnnnnnnnnn.DoctorAvailabilityPage">
+    <StackLayout Padding="15" VerticalOptions="FillAndExpand">
+        <!-- Title -->
+        <Label Text="Doctor Availability"
+               FontSize="22"
+               FontAttributes="Bold"
+               TextColor="#333333"
+               HorizontalOptions="Center" />
+
+        <!-- Availability ListView -->
+        <ListView x:Name="AvailabilityListView"
+                  SeparatorVisibility="Default"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" ColumnSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <!-- For Date -->
+                                <RowDefinition Height="Auto" />
+                                <!-- For Hour -->
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Date, StringFormat='{0:MM/dd/yyyy}'}"
+                                   FontSize="16"
+                                   TextColor="#333333"
+                                   VerticalOptions="Center"
+                                   Grid.Row="0" />
+
+                            <Label Text="{Binding Hour}"
+                                   FontSize="16"
+                                   TextColor="#777777"
+                                   VerticalOptions="Center"
+                                   Grid.Row="1" />  
+
+                            <Button Text="Décaler"
+                                    BackgroundColor="#4CAF50"
+                                    TextColor="White"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End"
+                                    Grid.RowSpan="2"  
+                                    Clicked="OnSelectAvailabilityClicked" />
+                        </Grid>
+
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

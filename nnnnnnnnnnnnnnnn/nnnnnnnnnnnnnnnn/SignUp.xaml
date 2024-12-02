@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="nnnnnnnnnnnnnnnn.SignUp"
+             BackgroundColor="#1C375C">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Main Frame for the form -->
+            <Frame Grid.Row="1" Margin="20,30" BorderColor="#1C375C" HasShadow="True" CornerRadius="50">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Sign Up Message -->
+                    <Label Grid.Row="0" Text="Create an Account" FontSize="24" FontAttributes="Bold" TextColor="#1C375C" HorizontalOptions="CenterAndExpand"/>
+
+                    <!-- Full Name Entry -->
+                    <Entry Grid.Row="1" Placeholder="Full Name" x:Name="NomEntry"  Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F4F6F7" PlaceholderColor="Gray" TextColor="Black"/>
+
+                    <!-- Email Entry -->
+                    <Entry Grid.Row="2" Placeholder="Email" x:Name="EmailEntry" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F4F6F7" PlaceholderColor="Gray" TextColor="Black"/>
+
+                    <!-- Phone Number Entry -->
+                    <Entry Grid.Row="3" Placeholder="Phone Number" x:Name="TelephoneEntry"  Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F4F6F7" PlaceholderColor="Gray" TextColor="Black"/>
+
+                    <!-- Password Entry -->
+                    <Entry Grid.Row="4" Placeholder="Password" x:Name="PasswordEntry" IsPassword="True" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F4F6F7" PlaceholderColor="Gray" TextColor="Black"/>
+
+                    <!-- Sign Up Button -->
+                    <Button Grid.Row="5" Text="Sign Up" BackgroundColor="#1C375C" TextColor="White" CornerRadius="20" VerticalOptions="CenterAndExpand" Clicked="OnSignUpClicked"/>
+
+                    
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

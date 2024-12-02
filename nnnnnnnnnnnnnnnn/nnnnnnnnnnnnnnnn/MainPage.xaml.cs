@@ -5,46 +5,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using MySql.Data.MySqlClient;
 
 namespace nnnnnnnnnnnnnnnn
 {
     public partial class MainPage : ContentPage
     {
+        private Service _service;
         public MainPage()
         {
             InitializeComponent();
-            /* string conn = "Server=192.168.56.1;  Database=centremedical; Uid=root;  Pwd=";
-             MySqlConnection connection = new MySqlConnection(conn);
-             try
-             {
-                 connection.Open();
-                 DisplayAlert("conn","success","ok");
-             }
-             catch (Exception ex)
-             {
-                 DisplayAlert("Alert",ex.Message,"ok");
-             }
-             finally
-             {
-                 connection.Close();
-             }*/
+            _service = new Service();
+            TestDatabaseConnection();
+
         }
-        private void Button_Clicked(Object sender, EventArgs e)
+        private async void TestDatabaseConnection()
         {
-            if (UsernameEntry.Text == "eya" && PasswordEntry.Text == "123")
+            try
             {
-                DisplayAlert("Login", "Login Successful", "OK");
-                Navigation.PushAsync(new Home(UsernameEntry.Text));
+                bool isConnected = await _service.TestConnectionAsync();
+                if (isConnected)
+                {
+                    await DisplayAlert("Connection Status", "Connection Successful", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Connection Status", "Connection Failed", "OK");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                DisplayAlert("Ops...", "Username or password incorrect", "OK");
+                await DisplayAlert("Connection Status", $"Connection Failed: {ex.Message}", "OK");
+            }
+        }
+      
+       
+        private async void Button_Clicked(Object sender, EventArgs e)
+        {
+            
+            try
+            {
+                var patient = await _service.LoginAsync(UsernameEntry.Text, PasswordEntry.Text);
+                await DisplayAlert("Login", "Login Successful", "OK");
+
+                await Navigation.PushAsync(new Home(patient.Email,patient.Id)); // Assuming Home takes patient details
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                await DisplayAlert("Error", $"Login failed: {ex.Message}", "OK");
             }
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            await Navigation.PushAsync(new SignUp());
         }
     }
 }

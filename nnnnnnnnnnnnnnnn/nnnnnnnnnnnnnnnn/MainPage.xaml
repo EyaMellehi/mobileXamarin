@@ -1,35 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="nnnnnnnnnnnnnnnn.MainPage" BackgroundColor="#112B47">
-
+             x:Class="nnnnnnnnnnnnnnnn.MainPage" BackgroundColor="#1C375C">
     <ContentPage.Content>
-        <StackLayout x:Name="MainStack" >
-            <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                <Entry Placeholder="UserName" x:Name="UsernameEntry" TextColor="White" PlaceholderColor="Gray"></Entry>
-                <Entry Placeholder="Password" x:Name="PasswordEntry" IsPassword="True" TextColor="White" PlaceholderColor="Gray"></Entry>
-                <Button VerticalOptions="Center"
-                        Text="LogIn"
-                        TextColor="White"
-                        BackgroundColor="Transparent"
-                        BorderColor="Green"
-                        BorderWidth="1.5"
-                        CornerRadius="50"
-                        Clicked="Button_Clicked"
-                      />
-                <Label HorizontalOptions="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Don't have an account?" TextColor="Gray"/>
-                            <Span Text="Register" TextColor="Gray" FontAttributes="Bold" TextDecorations="Underline"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
+            <!-- Logo Image -->
+            <Image Grid.Row="0" Source="logo.png" HeightRequest="100" HorizontalOptions="Center" Margin="0,20"/>
+
+            <!-- Main Frame for the form -->
+            <Frame Grid.Row="1" Margin="20,30" BorderColor="#1C375C" HasShadow="True" CornerRadius="50">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Welcome message -->
+                    <Label Grid.Row="0" Text="Welcome Back!" FontSize="24" FontAttributes="Bold" TextColor="#1C375C" HorizontalOptions="CenterAndExpand"/>
+
+                    <!-- Login Instructions -->
+                    <Label Grid.Row="1" Margin="0,-15,0,0" Text="Login to account" TextColor="#1C375C" HorizontalOptions="CenterAndExpand"/>
+
+                    <!-- Username Entry -->
+                    <Entry Grid.Row="2" Placeholder="Email" x:Name="UsernameEntry" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                    <!-- Password Entry -->
+                    <Entry Grid.Row="3" Placeholder="Password" x:Name="PasswordEntry"  IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                    <!-- Login Button -->
+                    <Button Grid.Row="4" Text="LogIn" BackgroundColor="#1C375C" TextColor="White" CornerRadius="20" VerticalOptions="CenterAndExpand"  Clicked="Button_Clicked"/>
+
+                    <!-- Sign Up Link -->
+                    <Label Grid.Row="5" Text="Don't have an account? Sign up here" TextColor="Gray" HorizontalOptions="CenterAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
