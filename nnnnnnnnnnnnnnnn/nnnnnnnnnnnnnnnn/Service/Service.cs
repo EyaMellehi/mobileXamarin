@@ -106,28 +106,5 @@ namespace nnnnnnnnnnnnnnnn
         }
 
 
-
-        /*public async Task<Patient> LoginAsync(string email, string password)
-        {
-            Console.WriteLine($"Email: {email}, Password: {password}");
-            var json = JsonConvert.SerializeObject(new { email, password }); // Assurez-vous des noms corrects
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync("login", content); // Vérifiez l'URL du endpoint
-
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonResponse = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<Patient>(jsonResponse);
-            }
-
-            var errorMessage = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Login failed: {response.StatusCode} - {errorMessage}");
-        }*/
-
-
-
-
-
     }
 }

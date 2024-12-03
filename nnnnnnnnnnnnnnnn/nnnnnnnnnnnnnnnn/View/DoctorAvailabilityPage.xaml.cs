@@ -128,76 +128,7 @@ namespace nnnnnnnnnnnnnnnn
         }
 
 
-        /*private async Task DeleteTimeSlotAsync(DoctorAvail selectedSlot)
-        {
-            try
-            {
-                // Build the API URL to delete the availability slot by ID
-                string apiUrl = $"http:// 192.168.124.35:4003/api/doctor_avail/{selectedSlot.Id}";
-
-                using (HttpClient client = new HttpClient())
-                {
-                    // Make a DELETE request to remove the availability slot
-                    var response = await client.DeleteAsync(apiUrl);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        Console.WriteLine("Time slot deleted successfully.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Failed to delete the time slot. Status Code: {response.StatusCode}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                await DisplayAlert("Error", "An error occurred while deleting the time slot. Please try again.", "OK");
-            }
-        }*/
-
-
-        /* private async void OnSelectAvailabilityClicked(object sender, EventArgs e)
-         {
-             var button = (Button)sender;
-             var selectedAvailability = (DoctorAvail)button.BindingContext;
-
-             try
-             {
-                 string apiUrl = $"http://192.168.1.6:4003/api/appointments/{appointmentId}";
-
-                 // Payload to send in the request body
-                 var updatePayload = new
-                 {
-                     date = selectedAvailability.Date,
-                     hour = selectedAvailability.Hour,
-                     etat = "encours" // The updated status of the appointment
-                 };
-
-                 using (HttpClient client = new HttpClient())
-                 {
-                     var content = new StringContent(JsonConvert.SerializeObject(updatePayload), System.Text.Encoding.UTF8, "application/json");
-                     var response = await client.PutAsync(apiUrl, content);
-
-                     if (response.IsSuccessStatusCode)
-                     {
-                         await DisplayAlert("Success", "Appointment updated successfully", "OK");
-                         // Optionally, delete the selected timeslot or perform other actions
-                         await Navigation.PopAsync();
-                         MessagingCenter.Send(this, "AppointmentUpdated");
-                     }
-                     else
-                     {
-                         await DisplayAlert("Error", "Failed to update appointment", "OK");
-                     }
-                 }
-             }
-             catch (Exception ex)
-             {
-                 Console.WriteLine($"Error updating appointment: {ex.Message}");
-             }
-         }*/
+        
 
     }
 }

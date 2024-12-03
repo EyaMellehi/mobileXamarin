@@ -1,7 +1,6 @@
 const express = require('express');
 const { Client } = require('pg');
 
-//const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const e = require('express');
 
@@ -9,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 
+// La ligne ci-dessous contient la chaîne de connexion à la base de données PostgreSQL avec les informations d'authentification et les paramètres de connexion.
 const connectionString = 'postgresql://neondb_owner:R8IhSm2dFAKG@ep-nameless-mountain-a5lkhw43.us-east-2.aws.neon.tech/neondb?sslmode=require';
 
 const client = new Client({
@@ -23,9 +23,13 @@ client.connect((err) => {
         console.log('Connected to PostgreSQL');
     }
 });
+
+
+// Cela permet de vérifier si le serveur fonctionne correctement en accédant à cette route.
 app.get('/api/status', (req, res) => {
-    res.send('Server is up and running'); // You can customize this message as needed
+    res.send('Server is up and running'); 
 });
+
 // Endpoint for login
 app.post('/api/login', (req, res) => {
     const { email, pwd } = req.body;
@@ -53,49 +57,11 @@ app.post('/api/login', (req, res) => {
 });
 
 
-// Configuration de la connexion à la base de données MySQL
-/*const db = mysql.createConnection({
-    host:'127.0.0.1',
-    user:'root',
-    password:'',
-    database:'medicalsolution',
-    port: 3308
-});
-
-// Connecter à la base de données
-db.connect((err) => {
-    if (err) {
-        console.error('Erreur de connexion à la base de données:', err);
-        return;
-    }
-    console.log('Connecté à la base de données MySQL');
-});*/
-
-
-app.get('/api/status', (req, res) => {
-    res.send('Server is up and running'); // You can customize this message as needed
-});
-// Endpoint for login
-app.post('/api/login', (req, res) => {
-    const { email, pwd } = req.body;
-    const query = "SELECT * FROM patient WHERE email = ? AND pwd = ?";
-    client.query(query, [email, pwd], (err, results) => {
-        if (err) {
-            return res.status(500).send('Erreur lors de l\'authentification');
-        }
-        if (results.length > 0) {
-            res.json(results[0]); // Return patient data on successful login
-        } else {
-            res.status(401).send('Email ou mot de passe incorrect');
-        }
-    });
-});
-
 
 // Endpoint to update specific fields of an appointment
 app.put('/api/appointments/:id', (req, res) => {
-    const appointmentId = req.params.id; // Appointment ID from the URL
-    const { etat, date, hour } = req.body; // Fields to update
+    const appointmentId = req.params.id; 
+    const { etat, date, hour } = req.body; 
 
     // PostgreSQL query with placeholders
     const query = `
@@ -181,12 +147,6 @@ app.put('/api/appointments/decal/:appointmentId', (req, res) => {
         });
     });
 });
-
-
-
-
-
-
 
 
 // Endpoint to delete a doctor availability by ID
@@ -313,44 +273,7 @@ app.get('/api/appointments/patient/:patientId', (req, res) => {
     });
 });
 
-/*app.get('/api/appointments/patient/:patientId', (req, res) => {
-    console.log('Request Params:', req.params);
-    console.log('Request Body:', req.body); // Should be undefined for GET
-    console.log('Request Query:', req.query);
-    const patientId = req.params.patientId;  // Get patientId from the request parameters
 
-    const query = `
-        SELECT
-            a.id,
-            a.codem,
-            TO_CHAR(a.date, 'YYYY-MM-DD') AS date,  -- Use TO_CHAR for date formatting in PostgreSQL
-            a.hour,
-            a.etat,
-            d.nom AS doctor_name, 
-            d.specialite AS doctor_specialty
-        FROM 
-            appointment a
-        JOIN 
-            doctor d ON a.codem = d.codem
-        WHERE 
-            a.patient = $1 AND (a.etat = 'encours' OR a.etat = 'confirme');
-    `;
-
-    client.query(query, [patientId], (err, results) => {
-        if (err) {
-            console.error('Error fetching appointments:', err);
-            return res.status(500).json({ message: 'Error fetching appointments' });
-        }
-
-        if (results.rows.length > 0) {
-            console.log('Results:', results.rows);
-            res.json(results.rows);  // Return appointments
-        } else {
-            console.log('No appointments found for patient:', patientId);
-            res.status(204).json();  // No content found (status 204)
-        }
-    });
-});*/
 
 
 
@@ -443,7 +366,7 @@ app.get('/api/doctors', (req, res) => {
 
 
 
-
+//update appointment (decaler)
 app.put('/api/appointments/update/:id', (req, res) => {
     const appointmentId = req.params.id;
     const { etat, date, hour, doctorId } = req.body; // Fields to update
@@ -518,58 +441,16 @@ app.put('/api/appointments/update/:id', (req, res) => {
     });
 });
 
-
-
-
-
+// Cette ligne démarre le serveur Express sur le port 4003.
+// Lorsque le serveur est lancé avec succès, un message est affiché dans la console,
+// indiquant que le serveur est accessible à l'adresse http://xxx.xxx.x.x:4003.
 
 app.listen(4003, () => {
     console.log('Serveur démarré sur http://192.168.1.6:4003');
 });
 
-// Endpoint to get available slots for a specific doctor
-/*app.get('/api/doctor_avail/:doctorId', async (req, res) => {
-    const doctorId = req.params.doctorId;
-
-    const query = `
-        SELECT id, doctor_id, date_a, hour_a
-        FROM doctor_avail
-        WHERE doctor_id = $1
-    `;
-
-    try {
-        const result = await client.query(query, [doctorId]); // Use parameterized queries to prevent SQL injection
-        res.json(result.rows); // Return the rows as JSON
-    } catch (err) {
-        console.error('Error fetching available slots:', err);
-        res.status(500).json({ message: 'Error fetching available slots' });
-    }
-});*/
 
 
 
 
-/*app.post('/api/doctor', (req, res) => {
-    const { nom,specialite, cin, telephone, email, pwd } = req.body;
 
-    console.log('Doctor data:', nom, specialite, cin, telephone, email, pwd);
-
-    const query = "INSERT INTO doctor (nom, specialite, cin, telephone, email, pwd) VALUES (?, ?, ?, ?, ?, ?)";
-
-    client.query(query, [nom, specialite, cin, telephone, email, pwd], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send("Erreur lors de l'ajout du médecin");
-        }
-        res.status(201).send('Médecin ajouté avec succès');
-    });
-});
-app.get('/api/doctors', (req, res) => {
-    const query = "SELECT * FROM doctor";
-    client.query(query, (err, results) => {
-        if (err) {
-            return res.status(500).send("Erreur lors de la récupération des médecins");
-        }
-        res.json(results.rows); // Renvoie uniquement les données
-    });
-});*/

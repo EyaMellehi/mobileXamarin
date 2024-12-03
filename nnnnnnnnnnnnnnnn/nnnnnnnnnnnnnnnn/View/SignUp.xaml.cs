@@ -28,9 +28,7 @@ namespace nnnnnnnnnnnnnnnn
             {
                 await DisplayAlert("Erreur", "Le champ 'Nom' est obligatoire.", "OK");
                 return;
-            }
-
-            
+            }  
 
             if (string.IsNullOrWhiteSpace(TelephoneEntry.Text) || !Regex.IsMatch(TelephoneEntry.Text, @"^\d{8}$"))
             {

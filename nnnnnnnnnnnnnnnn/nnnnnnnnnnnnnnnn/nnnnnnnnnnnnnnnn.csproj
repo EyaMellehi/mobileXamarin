@@ -20,19 +20,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="AppointmentDetailsPage.xaml">
+    <EmbeddedResource Update="View\AppointmentDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DoctorAvailabilityPage.xaml">
+    <EmbeddedResource Update="View\DoctorAvailabilityPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Home.xaml">
+    <EmbeddedResource Update="View\Home.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Input.xaml">
+    <EmbeddedResource Update="View\Input.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SignUp.xaml">
+    <EmbeddedResource Update="View\SignUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
