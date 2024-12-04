@@ -14,11 +14,27 @@ namespace nnnnnnnnnnnnnnnn
     public partial class SignUp : ContentPage
     {
         private Service _service;
+        private bool isPasswordVisible = false;
 
         public SignUp()
         {
             InitializeComponent();
             _service = new Service();
+        }
+        private void OnEyeIconTapped(object sender, EventArgs e)
+        {
+            // Toggle the IsPassword property
+            isPasswordVisible = !isPasswordVisible;
+            PasswordEntry.IsPassword = !isPasswordVisible;
+            Console.WriteLine("hhhh*************************************h");
+            if (isPasswordVisible)
+            {
+                EyeIcon.Source = "eya.png";  // Replace with your open eye icon
+            }
+            else
+            {
+                EyeIcon.Source = "ceye.png";  // Replace with your closed eye icon
+            }
         }
 
         private async void OnSignUpClicked(object sender, EventArgs e)

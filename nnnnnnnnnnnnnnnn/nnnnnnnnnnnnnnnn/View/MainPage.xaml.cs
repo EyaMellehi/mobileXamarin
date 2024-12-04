@@ -10,13 +10,28 @@ namespace nnnnnnnnnnnnnnnn
 {
     public partial class MainPage : ContentPage
     {
+        // Déclaration d'un objet Service,pour gérer la communication avec une base de données
         private Service _service;
         public MainPage()
         {
             InitializeComponent();
-            _service = new Service();
-            TestDatabaseConnection();
+            _service = new Service();// Création d'une nouvelle instance de la classe Service
+            TestDatabaseConnection();// Teste la connexion à la base de données au démarrage de la page
 
+        }
+        private void EyeIcon_Clicked(object sender, EventArgs e)
+        {
+            // Check the current visibility and toggle
+            if (PasswordEntry.IsPassword)
+            {
+                PasswordEntry.IsPassword = false;  // Show password
+                EyeIcon.Source = "eya.png";  // Change icon to open eye
+            }
+            else
+            {
+                PasswordEntry.IsPassword = true;  // Hide password
+                EyeIcon.Source = "ceye.png";  // Change icon to closed eye
+            }
         }
         private async void TestDatabaseConnection()
         {

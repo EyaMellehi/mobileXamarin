@@ -32,9 +32,14 @@
                     <!-- Phone Number Entry -->
                     <Entry Grid.Row="3" Placeholder="Phone Number" x:Name="TelephoneEntry"  Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F4F6F7" PlaceholderColor="Gray" TextColor="Black"/>
 
-                    <!-- Password Entry -->
-                    <Entry Grid.Row="4" Placeholder="Password" x:Name="PasswordEntry" IsPassword="True" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F4F6F7" PlaceholderColor="Gray" TextColor="Black"/>
+                    <!-- Password Entry with Eye Icon to Toggle Password Visibility -->
+                    <Grid Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F4F6F7" PlaceholderColor="Gray" TextColor="Black"/>
 
+                        <!-- Eye Icon to toggle password visibility -->
+                        <ImageButton x:Name="EyeIcon" Source="eye_icon.png" HorizontalOptions="End" VerticalOptions="Center"
+                                    WidthRequest="30" HeightRequest="30" Margin="0,0,10,0" Clicked="OnEyeIconTapped"/>
+                    </Grid>
                     <!-- Sign Up Button -->
                     <Button Grid.Row="5" Text="Sign Up" BackgroundColor="#1C375C" TextColor="White" CornerRadius="20" VerticalOptions="CenterAndExpand" Clicked="OnSignUpClicked"/>
 

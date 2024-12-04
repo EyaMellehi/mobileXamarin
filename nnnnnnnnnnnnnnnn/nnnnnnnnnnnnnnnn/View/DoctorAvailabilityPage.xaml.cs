@@ -15,7 +15,7 @@ namespace nnnnnnnnnnnnnnnn
     {
         private int doctorId;
         private int appointmentId;
-        private const string BaseUrl = "http://192.168.1.6:4003/api";
+        private const string BaseUrl = "http://192.168.180.35:4003/api";
 
         public DoctorAvailabilityPage(int doctorId, int appointmentId)
         {

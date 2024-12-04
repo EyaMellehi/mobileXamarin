@@ -16,7 +16,7 @@ namespace nnnnnnnnnnnnnnnn
     public partial class AppointmentDetailsPage : ContentPage
     {
         private int _patientId;
-        private const string BaseUrl = "http://192.168.1.6:4003/api";
+        private const string BaseUrl = "http://192.168.180.35:4003/api";
         public AppointmentDetailsPage(List<Appointment> appointments,int PatientId)
         {
             InitializeComponent();

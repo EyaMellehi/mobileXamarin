@@ -32,9 +32,17 @@
                     <!-- Username Entry -->
                     <Entry Grid.Row="2" Placeholder="Email" x:Name="UsernameEntry" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
-                    <!-- Password Entry -->
-                    <Entry Grid.Row="3" Placeholder="Password" x:Name="PasswordEntry"  IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Grid Grid.Row="3" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
+                        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                        <!-- Eye Icon to toggle password visibility -->
+                        <ImageButton x:Name="EyeIcon" Grid.Column="1" Source="eye_closed.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Clicked="EyeIcon_Clicked"/>
+                    </Grid>
                     <!-- Login Button -->
                     <Button Grid.Row="4" Text="LogIn" BackgroundColor="#1C375C" TextColor="White" CornerRadius="20" VerticalOptions="CenterAndExpand"  Clicked="Button_Clicked"/>
 

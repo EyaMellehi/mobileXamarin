@@ -18,7 +18,7 @@ namespace nnnnnnnnnnnnnnnn
     {
         private string _email;
         private int _PatientId;
-        private const string BaseUrl = "http://192.168.1.6:4003/api";
+        private const string BaseUrl = "http://192.168.180.35:4003/api";
 
 
         public Home(string email,int id)

@@ -2,99 +2,98 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="nnnnnnnnnnnnnnnn.AppointmentDetailsPage">
-    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="15">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Styles for the Appointment Card -->
+            <Style x:Key="CardStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="Margin" Value="10,5" />
+            </Style>
+
+            <!-- Label Style for Appointment Information -->
+            <Style x:Key="AppointmentLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#333333" />
+            </Style>
+
+            <!-- Button Style -->
+            <Style x:Key="ActionButton" TargetType="Button">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="15" VerticalOptions="FillAndExpand">
         <!-- Title -->
         <Label Text="Your Appointments"
-               FontSize="22"  
+               FontSize="24"  
                FontAttributes="Bold"  
                TextColor="#333333"  
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center"
+               Margin="0,0,0,20" />
 
         <!-- Appointments ListView -->
         <ListView x:Name="AppointmentsListView" 
                   BackgroundColor="White"
-                  SeparatorVisibility="Default"
+                  SeparatorVisibility="None"
                   HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10" RowSpacing="5" ColumnSpacing="10" BackgroundColor="White">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <!-- Added Column for Cancel Button -->
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <!-- Row for Buttons -->
-                            </Grid.RowDefinitions>
+                        <!-- Appointment Card -->
+                        <Frame Style="{StaticResource CardStyle}">
+                            <StackLayout Spacing="15">
+                                <!-- Appointment Time -->
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Date, StringFormat='{0:dd MMM yyyy}'}" 
+                                           Style="{StaticResource AppointmentLabel}" 
+                                           HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Hour}" 
+                                           Style="{StaticResource AppointmentLabel}" 
+                                           HorizontalOptions="End" />
+                                </StackLayout>
 
-                            <!-- Appointment Time -->
-                            <Label Text="{Binding Date, StringFormat='{0:MM/dd/yyyy}'}" 
-                                   FontSize="10" 
-                                   FontAttributes="Bold" 
-                                   TextColor="#333333" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Start" 
-                                   Grid.Column="0" Grid.Row="0" />
+                                <!-- Doctor's Information -->
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding DoctorName}" 
+                                           FontSize="16"
+                                           FontAttributes="Italic"
+                                           TextColor="#555555" 
+                                           HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding DoctorSpecialty}" 
+                                           FontSize="16" 
+                                           TextColor="#555555" 
+                                           HorizontalOptions="End" />
+                                </StackLayout>
 
-                            <Label Text="{Binding Hour}" 
-                                   FontSize="10" 
-                                   FontAttributes="Bold" 
-                                   TextColor="#333333" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="End" 
-                                   Grid.Column="1" Grid.Row="0" />
+                                <!-- Appointment Status -->
+                                <Label Text="{Binding Etat}" 
+                                       FontSize="16" 
+                                       TextColor="LightPink"
+                                       HorizontalOptions="End" />
 
-                            <!-- Doctor's Name -->
-                            <Label Text="{Binding DoctorName}" 
-                                   FontSize="14" 
-                                   FontAttributes="Italic"
-                                   TextColor="#777777" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Start" 
-                                   Grid.Column="0" Grid.Row="1" />
+                                <!-- Buttons for Actions -->
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10">
+                                    <Button Text="Reschedule"
+                                            Style="{StaticResource ActionButton}"
+                                            BackgroundColor="#4CAF50"
+                                            HorizontalOptions="FillAndExpand"
+                                            Clicked="OnDeclareAppointmentClicked" />
 
-                            <!-- Doctor's Specialty -->
-                            <Label Text="{Binding DoctorSpecialty}" 
-                                   FontSize="14" 
-                                   TextColor="#777777" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="End" 
-                                   Grid.Column="1" Grid.Row="1" />
-                            
-                            <Label Text="{Binding Etat}" 
-                                   FontSize="14" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="End" 
-                                   TextColor="LightPink"
-                                   Grid.Column="2" Grid.Row="1" />
-
-                            <!-- Declare Appointment Button -->
-                            <Button Text="Décaler"
-                                    FontSize="14"
-                                    BackgroundColor="#4CAF50"
-                                    TextColor="White"
-                                    VerticalOptions="Center" 
-                                    HorizontalOptions="Center"
-                                    Grid.Column="0" Grid.Row="2" 
-                                     BindingContext="{Binding .}"
-                                    Clicked="OnDeclareAppointmentClicked" />
-
-                            <!-- Cancel Appointment Button -->
-                            <Button Text="Annuler"
-                                    FontSize="14"
-                                    BackgroundColor="#F44336"
-                                    TextColor="White"
-                                    VerticalOptions="Center" 
-                                    HorizontalOptions="Center"
-                                    Grid.Column="1" Grid.Row="2" 
-                                    Clicked="OnCancelAppointmentClicked" />
-                        </Grid>
-
+                                    <Button Text="Cancel"
+                                            Style="{StaticResource ActionButton}"
+                                            BackgroundColor="#F44336"
+                                            HorizontalOptions="FillAndExpand"
+                                            Clicked="OnCancelAppointmentClicked" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

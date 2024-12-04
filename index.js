@@ -244,7 +244,8 @@ app.get('/api/appointments/patient/:patientId', (req, res) => {
         JOIN 
             doctor d ON a.codem = d.codem
         WHERE 
-            a.patient = $1;
+            a.patient = $1
+            AND a.date + a.hour::interval >= CURRENT_TIMESTAMP
     `;
 
     client.query(query, [patientId], (err, results) => {
@@ -446,7 +447,7 @@ app.put('/api/appointments/update/:id', (req, res) => {
 // indiquant que le serveur est accessible à l'adresse http://xxx.xxx.x.x:4003.
 
 app.listen(4003, () => {
-    console.log('Serveur démarré sur http://192.168.1.6:4003');
+    console.log('Serveur démarré sur http://192.168.180.35:4003');
 });
 
 
